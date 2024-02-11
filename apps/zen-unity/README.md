@@ -1,0 +1,14 @@
+# zen-unity
+This is a Unity URP 3D - WebGL project for this monorepo.  Open this project's directory with Unity Hub to launch it within the Unity Editor.  All of the dependencies will be downloaded and installed into the Unity project that is described by the `apps/zen-unity/Packages/manifest.json` file. Wait for the project to open within Unity Editor.
+
+[UniVRM](https://github.com/vrm-c/UniVRM) and its dependencies are being utilized for the VRM loader, which is just an extension of the [glTF standard](https://www.youtube.com/watch?v=tonSNnEj-ow).  There are some issues with the initial setup of projects with UniVRM installed.  I have [filed an issue](https://github.com/vrm-c/UniVRM/issues/2185) in their project's GitHub repo about it.
+
+Please find the file `apps/zen-unity/Assets/Art/VRM/Mico.vrm` within the Unity Editor's project explorer.  It is the only `.vrm` file currently in the project.  Select the `Materials` tab after selecting the `.vrm` file.  Ensure that the `Render Pipeline` setting is set to `Universal Render Pipeline`.  For further details, refer to the UniVRM issue: [Render pipeline setting incorrectly detects if URP is installed](https://github.com/vrm-c/UniVRM/issues/2185).
+
+The Unity project must be open within Unity's Editor at least once for the command `pnpm dev:unity` to be able to compile the Unity app successfully and copy the WASM files and addressable assets into the `apps/portal/src/assets/unity` path.
+
+The NodeJS script running the compilation is expecting the `Unity.exe` to exist within the system environment paths.  Please ensure that you have added it to the list of your environment paths.  For my system running Windows 11, I am required to add `C:\Program Files\Unity\Hub\Editor\2023.2.8f1\Editor` to my environment paths.  Notice that the editor installed on your system should match this Unity project's version.  The current version of the Unity project can be found at `apps/zen-unity/ProjectSettings/ProjectVersion.txt`.
+
+Once the project has been open within Unity's Editor at least once, and the VRM issues with respect to URP projects has been addressed, close the Unity Editor and run the command `pnpm dev:unity` which will compile the project and copy the assets to the necessary directories to run the game as a WebGL app within the Angular app named `portal` of this monorepo.  Note that the Unity project cannot be currently open within the Unity Editor on your system that is to compile the project.  Please ensure that the Unity Editor is closed before running the NodeJS script that compiles the project.
+
+Otherwise, that should be all you should really need to know to get the project compiled and up and running as a web app.  Just run `pnpm start` and `pnpm start:api` after the Unity app has finished compiling.  You will find the Unity web player as an Angular standalone component under the `Unity` page.
