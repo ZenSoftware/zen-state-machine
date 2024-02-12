@@ -1,10 +1,11 @@
 using System;
 
-namespace Zen {
+namespace Zen
+{
     [Serializable]
     public enum UnitType
     {
-        StandardBlock,
-        Puck,
+        Puck = 0,
+        StandardBlock = 1,
     }
 }

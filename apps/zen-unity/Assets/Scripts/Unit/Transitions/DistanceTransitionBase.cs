@@ -4,14 +4,14 @@ namespace Zen.Transitions
 {
     public abstract class DistanceTransitionBase : Transition
     {
+        protected float _maxRadius;
         private Transform _transformA;
         private Transform _transformB;
-        protected float _maxRadius;
 
         protected DistanceTransitionBase(float maxRadius, Transform transformA, Transform transformB)
         {
-            _transformA = transformA;
             _maxRadius = maxRadius;
+            _transformA = transformA;
             _transformB = transformB;
         }
 
@@ -20,7 +20,8 @@ namespace Zen.Transitions
 
     public class DistanceGreaterThan : DistanceTransitionBase
     {
-        public DistanceGreaterThan(float maxRadius, Transform origin, Transform playerTransform) : base(maxRadius, origin, playerTransform)
+        public DistanceGreaterThan(float maxRadius, Transform origin, Transform player)
+            : base(maxRadius, origin, player)
         {
             _checkConditionFunc = () => _distance > _maxRadius;
         }
@@ -28,7 +29,8 @@ namespace Zen.Transitions
 
     public class DistanceLessThan : DistanceTransitionBase
     {
-        public DistanceLessThan(float maxRadius, Transform origin, Transform playerTransform) : base(maxRadius, origin, playerTransform)
+        public DistanceLessThan(float maxRadius, Transform origin, Transform player)
+            : base(maxRadius, origin, player)
         {
             _checkConditionFunc = () => _distance < _maxRadius;
         }
