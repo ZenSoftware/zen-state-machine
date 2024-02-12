@@ -1,16 +1,10 @@
-
 using UnityEngine;
 
 namespace Zen
 {
-    public class WebPlayerManager : MonoBehaviour
+    public class WebPlayerManager : Singleton<WebPlayerManager>
     {
 #if UNITY_WEBGL
-        private void Awake()
-        {
-            DontDestroyOnLoad(gameObject);
-        }
-
         public static void SetCaptureAllKeyboardInput(int value)
         {
             if (value == 1) WebGLInput.captureAllKeyboardInput = true;

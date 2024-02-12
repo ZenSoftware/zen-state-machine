@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Zen
@@ -38,7 +36,7 @@ namespace Zen
     /// loads.  Perfect for system classes which require stateful, persistent data.
     /// Or audio sources where music plays through loading screens, etc.
     /// </summary>
-    public abstract class PersistentSingleton<T> : Singleton<T> where T: MonoBehaviour
+    public abstract class PersistentSingleton<T> : Singleton<T> where T : MonoBehaviour
     {
         protected override void Awake()
         {
